@@ -1,0 +1,23 @@
+<h1>Create a new collection of hashtags!</h1>
+{% extends 'index.html' %}
+
+{% block main_content %}
+<h2> You have created:
+{% if num_collections %}
+ <b>{{ num_collections }}</b>
+{% else %}
+<b>0</b>
+{% endif %} 
+collections so far!<br></h2>
+<form action="/create_collection" method="POST">
+	{{ form.hidden_tag() }}
+	{{ form.title.label }} {{ form.title() }}
+	{{ form.chosen_ht.label }} {{ form.chosen_ht() }}
+	{{ form.submit.label }}{{ form.submit() }}
+</form>
+<div>
+{% for message in get_flashed_messages() %}
+{{ message }}
+{% endfor %}
+</div>
+{% endblock %}

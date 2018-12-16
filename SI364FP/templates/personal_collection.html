@@ -1,0 +1,22 @@
+<h1>My collections</h1>
+
+{% extends 'index.html' %}
+
+{% block main_content %}
+
+<ul>
+{% for c in collections %}
+    <li><a href="{{ url_for('single_collection',title=c.collection_title)}}">{{ c.collection_title }}</a>
+        <form method="POST" action="/delete/{{ c.collection_title }}">
+        	{{ form.hidden_tag() }}
+        	{{ form.delete() }}
+        </form>
+    </li>
+{% endfor %}
+</ul>
+<div>
+	{% for message in get_flashed_messages() %}
+	<strong>*** {{ message }} ***</strong>
+{% endfor %}
+</div>
+{% endblock %}

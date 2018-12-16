@@ -1,0 +1,10 @@
+{%extends 'index.html'%}
+{% block main_content %}
+The definitions for your hashtag, <b>{{hashtag}}</b>, are (in order):
+<br>
+{% for n in objects %}
+<br>
+ <b>{{n['def']['text']}}</b>
+ <br>
+{% endfor %}
+{% endblock %}

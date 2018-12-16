@@ -1,0 +1,32 @@
+{% if current_user.is_authenticated %}
+    <a href="{{ url_for('logout') }}">Sign Out {{current_user.username}}</a>
+{% else %}
+    <a href="{{ url_for('login') }}">Sign In</a>
+{% endif %}
+<br>
+<br>
+
+{% block navigation %}
+<ul ol style="list-style-type:square">
+    <li><a href="{{ url_for('index') }}">Add a hashtag to the database!</a></li>
+    <li> <a href="{{ url_for('create_collection') }}">Create a collection of hashtags!</a></li>
+    <li> <a href="{{ url_for('all_collections') }}">See all the collections you've created so far!</a></li>
+    <li> <a href="{{ url_for('act_ht') }}">See all the confusing tweeters!</a></li>
+</ul>
+<p>--------</p><br>
+{% endblock %}
+
+{% block main_content %}
+<form method="POST" action="/">
+    {{ form.hidden_tag() }}
+    {{ form.hashtag.label }} {{ form.hashtag() }} <br>
+    {{ form.tweeter.label }} {{ form.tweeter() }} <br>
+    {{ form.difficulty.label }} {{ form.difficulty() }} <br>
+    {{ form.submit() }}
+</form>
+<div>
+{% for message in get_flashed_messages() %}
+{{ message }}
+{% endfor %}
+</div>
+{% endblock %}

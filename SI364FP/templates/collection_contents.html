@@ -1,0 +1,27 @@
+<h1>{{ collection.title }}</h1>
+{% extends 'index.html' %}
+
+{% block nav %}
+    {{ super() }}
+{% endblock %}
+
+{% block main_content %}
+<ul>
+{% for ht in hts %}
+    <li>
+        <strong>Confusing hashtag: </strong> {{ ht.hashtag }}<br> <strong>Definitions:</strong> {{ht.definition}}<br> <strong>
+        Difficulty:</strong> {{ ht.difficulty }} 
+        <form method="GET" action="/update/{{ ht.hashtag }}">
+        	{{ form.hidden_tag() }}
+        	{{ form.update() }}
+</form>
+    </li>
+{% endfor %}
+{% endblock %}
+</ul>
+<div>
+{% for message in get_flashed_messages() %}
+<strong>*** {{ message }} ***</strong>
+{% endfor %}
+</div>
+
