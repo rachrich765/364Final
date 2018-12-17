@@ -57,7 +57,8 @@ A user should be able to load http://localhost:5000 and see the first page they 
  	collection_contents.html
  	hashtag_results.html
  	personal_collection.html
- 17.  **At least two Jinja template conditionals should occur amongst the templates.**
+ 
+ 17. **At least two Jinja template conditionals should occur amongst the templates.**
  	all_hashtags_and_ct.html
  	create_collection.html
  

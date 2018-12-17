@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% block main_content %}
+{% if num_ct %}
+<h2>There are <b>{{ num_ct }}</b>
+{% else %}
+<b>0</b>
+{% endif %} 
+Confusing Tweeters!<br></h2>
+{% for x in all_ct %}
+<ul ol style="list-style-type:square">
+<li><b>{{ x }}</b> has been classified as a confusing Tweeter!</li><br>
+</ul>
+{% endfor %}
+{% for message in get_flashed_messages() %} *** {{ message }} *** {% endfor %}
+{% endblock %}

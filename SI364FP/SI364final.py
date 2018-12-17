@@ -172,7 +172,7 @@ def validate_difficult(form,field):
     if difficult_as_int not in range(1,11):
         raise ValidationError('Difficulty can only be 1-10!')
 class UpdateDifficultyForm(FlaskForm):
-    newDifficulty = StringField("After seeing the definition, what is the new difficulty of this hashtag?", validators=[Required(), validate_difficult])
+    newDifficulty = StringField("After seeing the definition, what is your new difficulty of this hashtag?", validators=[Required(), validate_difficult])
     update = SubmitField('Update')
 
 class DeleteButtonForm(FlaskForm): 
@@ -371,15 +371,14 @@ def update(hashtag):
 
 @app.route('/all_confusing_tweeters', methods=['GET'])
 def act_ht():
-    if request.method =='GET':
-        all_hashtags = list()
-        all_ct = ConfusingTweeter.query.all()
-        num_ct = len(all_ct) 
-        all_the_hashtags_and_ct = Confusing_Hashtag.query.all()
+    all_ct2 = list()
+    all_ct = ConfusingTweeter.query.all()
+    num_ct = len(all_ct) 
+    all_the_hashtags_and_ct = Confusing_Hashtag.query.all()
     for h in all_the_hashtags_and_ct:
         ct1 = ConfusingTweeter.query.filter_by(id=h.tweeter_id).first()
-        all_hashtags.append((h.hashtag, ct1.tweeter_name))
-    return render_template('all_hashtags_and_ct.html', num_ct= num_ct, all_ct=all_hashtags)
+        all_ct2.append(ct1)
+    return render_template('all_ct.html', num_ct= num_ct, all_ct=all_ct2)
 
 if __name__ == '__main__':
     db.create_all() 
